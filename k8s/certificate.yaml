@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: complex-k8s-tls
+spec:
+  secretName: complex-k8s-cert-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: matt-projects.dev
+  dnsNames:
+    - matt-projects.dev
+    - www.matt-projects.dev
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - matt-projects.dev
+          - www.matt-projects.dev
