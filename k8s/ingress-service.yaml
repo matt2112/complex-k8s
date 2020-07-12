@@ -12,6 +12,8 @@ spec:
     - hosts:
         - matt-projects.dev
         - www.matt-projects.dev
+        - k8s-fib.matt-projects.dev
+        - www.k8s-fib.matt-projects.dev
       secretName: complex-k8s-cert-secret
   rules:
     - host: matt-projects.dev
@@ -26,6 +28,28 @@ spec:
               serviceName: server-cluster-ip-service
               servicePort: 5000
     - host: www.matt-projects.dev
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
+    - host: k8s-fib.matt-projects.dev
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
+    - host: www.k8s-fib.matt-projects.dev
       http:
         paths:
           - path: /?(.*)
