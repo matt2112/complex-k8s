@@ -11,6 +11,8 @@ spec:
   dnsNames:
     - matt-projects.dev
     - www.matt-projects.dev
+    - k8s-fib.matt-projects.dev
+    - www.k8s-fib.matt-projects.dev
   acme:
     config:
       - http01:
@@ -18,3 +20,5 @@ spec:
         domains:
           - matt-projects.dev
           - www.matt-projects.dev
+          - k8s-fib.matt-projects.dev
+          - www.k8s-fib.matt-projects.dev
